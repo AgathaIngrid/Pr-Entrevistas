@@ -1,0 +1,64 @@
+
+
+namespace Pre - Entrevista
+{
+    [TestFixture]
+    public class Entrevista_art
+    {
+        private IWebDriver driver;
+        private StringBuilder verificationErrors;
+        private string baseURL;
+
+
+
+
+        [SetUp]
+        public void SetupTest()
+
+        {
+
+
+            ChromeOptions options = new ChromeOptions();            
+            driver.Manage().Window.Maximize();
+            baseURL = "https://artit.com.br/";
+            
+
+
+
+        }
+
+        public void wait(By elemento)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            wait.Until(ExpectedConditions.ElementToBeClickable(elemento));
+        }
+
+
+        [Test]
+        public void CT001_Cadastro_de_Candidats()
+        {
+           
+            //Execução
+
+
+            driver.Navigate().GoToUrl(baseURL);
+
+
+
+
+            driver.FindElement(By.Id("menu-item-26279"")).Click();
+            
+
+            wait(By.Id("nf-form-title-5"));
+
+
+            driver.FindElement(By.Id("nf-field-30")).SendKeys("Agatha Ingrid Soares");
+            Thread.Sleep(2000);
+            driver.FindElement(By.Id("nf-field-31")).SendKeys("agathaingrid99@gmai.com");
+            Thread.Sleep(2000);
+            driver.FindElement(By.Id("nf-field-32")).SendKeys("11965293273");
+            Thread.Sleep(2000);
+            driver.FindElement(By.Id("nf-field-44"")).SendKeys("Olá, quero enviar meu cv");
+            driver.FindElement(By.Id("nf-field-29")).Click();
+
+		driver.Quit();
